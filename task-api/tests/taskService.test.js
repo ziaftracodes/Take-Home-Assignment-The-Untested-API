@@ -97,10 +97,11 @@ describe('taskService', () => {
   });
 
   describe('completeTask', () => {
-    it('should complete a task', () => {
+    it('should complete a task and not override priority', () => {
       const task = taskService.create({ title: 'Task', priority: 'high' });
       const completed = taskService.completeTask(task.id);
       expect(completed.status).toBe('done');
+      expect(completed.priority).toBe('high');
       expect(completed.completedAt).toBeDefined();
     });
 
